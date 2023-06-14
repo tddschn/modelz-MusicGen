@@ -1,8 +1,8 @@
-# Modelz ChatGLM
+# Modelz StarCoder
 
-[ChatGLM](https://github.com/THUDM/ChatGLM-6B) is a large-scale pre-trained language model for open-domain chatbot, which is open-sourced by Tsinghua University.
+[StarCoder](https://huggingface.co/bigcode/starcoder) is a large-scale pre-trained language model for open-domain chatbot, which is open-sourced by Tsinghua University.
 
-This repository contains the code (Dockerfile, [`build.envd`](https://envd.tensorchord.ai/guide/getting-started.html)) for deploying ChatGLM on [Modelz](https://docs.modelz.ai/).
+This repository contains the code (Dockerfile, [`build.envd`](https://envd.tensorchord.ai/guide/getting-started.html)) for deploying StarCoder on [Modelz](https://docs.modelz.ai/).
 
 ## Getting Started
 

@@ -1,41 +1,18 @@
-from transformers import AutoModel, AutoTokenizer
+import os
 import gradio as gr
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
-tokenizer = AutoTokenizer.from_pretrained("THUDM/chatglm-6b", trust_remote_code=True)
-model = AutoModel.from_pretrained("THUDM/chatglm-6b", trust_remote_code=True).half().cuda()
-model = model.eval()
+checkpoint = "bigcode/starcoder"
+device = "cuda"  # change this to "cpu" if you do not have a GPU
 
-MAX_TURNS = 20
-MAX_BOXES = MAX_TURNS * 2
+tokenizer = AutoTokenizer.from_pretrained(checkpoint)
+model = AutoModelForCausalLM.from_pretrained(checkpoint).to(device)
 
+def predict(prompt):
+    inputs = tokenizer.encode(prompt, return_tensors="pt").to(device)
+    outputs = model.generate(inputs)
+    return tokenizer.decode(outputs[0])
 
-def predict(input, history=None):
-    if history is None:
-        history = []
-    response, history = model.chat(tokenizer, input, history)
-    updates = []
-    for query, response in history:
-        updates.append(gr.update(visible=True, value="用户：" + query))
-        updates.append(gr.update(visible=True, value="ChatGLM-6B：" + response))
-    if len(updates) < MAX_BOXES:
-        updates = updates + [gr.Textbox.update(visible=False)] * (MAX_BOXES - len(updates))
-    return [history] + updates
+demo = gr.Interface(fn=predict, inputs="text", outputs="text")
 
-
-with gr.Blocks() as demo:
-    state = gr.State([])
-    text_boxes = []
-    for i in range(MAX_BOXES):
-        if i % 2 == 0:
-            text_boxes.append(gr.Markdown(visible=False, label="提问："))
-        else:
-            text_boxes.append(gr.Markdown(visible=False, label="回复："))
-
-    with gr.Row():
-        with gr.Column(scale=4):
-            txt = gr.Textbox(show_label=False, placeholder="Enter text and press enter").style(container=False)
-        with gr.Column(scale=1):
-            button = gr.Button("Generate")
-    button.click(predict, [txt, state], [state] + text_boxes)
-    gr.Markdown("Check out [**ChatGLM**](https://github.com/THUDM/ChatGLM-6B) | Hosted on [**Modelz**](https://docs.modelz.ai/)")
-demo.launch()
+demo.launch(server_port=os.environ.get("GRADIO_SERVER_PORT", 8080))
