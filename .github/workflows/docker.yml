@@ -64,3 +64,10 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+    
+      - name: Docker Hub Description
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          username: ${{ secrets.DOCKERIO_MODELZ_USERNAME }}
+          password: ${{ secrets.DOCKERIO_MODELZ_TOKEN }}
+          repository: ${{ env.IMAGE_NAME }}
