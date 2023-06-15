@@ -1,6 +1,7 @@
 # Modelz MusicGen
 
-[MusicGen](https://github.com/facebookresearch/audiocraft) is a large-scale pre-trained language model for open-domain chatbot, which is open-sourced by Tsinghua University.
+[MusicGen](https://github.com/facebookresearch/audiocraft) is a state-of-the-art controllable text-to-music model.
+
 
 This repository contains the code (Dockerfile, [`build.envd`](https://envd.tensorchord.ai/guide/getting-started.html)) for deploying MusicGen on [Modelz](https://docs.modelz.ai/).
 
