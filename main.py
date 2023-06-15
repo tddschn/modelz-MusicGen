@@ -2,7 +2,7 @@ import os
 import gradio as gr
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-checkpoint = "bigcode/starcoder"
+checkpoint = "bigcode/MusicGen"
 device = "cuda"  # change this to "cpu" if you do not have a GPU
 
 tokenizer = AutoTokenizer.from_pretrained(checkpoint)

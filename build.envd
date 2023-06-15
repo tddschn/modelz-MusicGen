@@ -10,8 +10,8 @@ def basic():
 # envd build --output type=image,name=<image>,push=true
 def build():
     basic()
-    io.copy("main.py", "/")
-    config.entrypoint(["python", "main.py"])
+    io.copy("app.py", "/")
+    config.entrypoint(["python", "app.py"])
 
 
 # build_gpu is a custom build function that will be used to build the GPU image.
@@ -19,5 +19,5 @@ def build():
 def build_gpu():
     basic()
     install.cuda(version="11.6.2")
-    io.copy("main.py", "/")
-    config.entrypoint(["python", "main.py"])
+    io.copy("app.py", "/")
+    config.entrypoint(["python", "app.py"])

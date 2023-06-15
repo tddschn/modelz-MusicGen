@@ -20,7 +20,7 @@ concurrency:
 
 env:
   REGISTRY: docker.io
-  IMAGE_NAME: teddyschan/modelz-starcoder
+  IMAGE_NAME: teddyschan/modelz-MusicGen
 
 
 jobs:

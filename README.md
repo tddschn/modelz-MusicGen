@@ -1,8 +1,8 @@
-# Modelz StarCoder
+# Modelz MusicGen
 
-[StarCoder](https://huggingface.co/bigcode/starcoder) is a large-scale pre-trained language model for open-domain chatbot, which is open-sourced by Tsinghua University.
+[MusicGen](https://github.com/facebookresearch/audiocraft) is a large-scale pre-trained language model for open-domain chatbot, which is open-sourced by Tsinghua University.
 
-This repository contains the code (Dockerfile, [`build.envd`](https://envd.tensorchord.ai/guide/getting-started.html)) for deploying StarCoder on [Modelz](https://docs.modelz.ai/).
+This repository contains the code (Dockerfile, [`build.envd`](https://envd.tensorchord.ai/guide/getting-started.html)) for deploying MusicGen on [Modelz](https://docs.modelz.ai/).
 
 ## Getting Started
 
